@@ -2,6 +2,7 @@ package com.gildedrose
 
 class GildedRose(val items: List<Item>) {
 
+    // 
     fun updateQuality() {
         for (i in items.indices) {
             if (items[i].name != "Sulfuras, Hand of Ragnaros") {
