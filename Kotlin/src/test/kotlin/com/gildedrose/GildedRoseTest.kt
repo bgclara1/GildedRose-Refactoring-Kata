@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal class GildedRoseTest {
 
     @Test
-    fun dexterityVestNormal() {
+    fun dexterityVestNormalBehaviour() {
         val items = listOf(Item("+5 Dexterity Vest", 10, 20))
         val app = GildedRose(items)
         app.updateQuality()
@@ -16,7 +16,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun dexterityVestNegativeSellIn() {
+    fun dexterityVestNegativeSellInBehaviour() {
         val items = listOf(Item("+5 Dexterity Vest", 0, 20))
         val app = GildedRose(items)
         app.updateQuality()
@@ -26,7 +26,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun agedBrieNormal() {
+    fun agedBrieNormalBehaviour() {
         val items = listOf(Item("Aged Brie", 2, 0))
         val app = GildedRose(items)
         app.updateQuality()
@@ -36,7 +36,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun elixirOfTheMongooseNormal() {
+    fun elixirOfTheMongooseNormalBehaviour() {
         val items = listOf(Item("Elixir of the Mongoose", 5, 7))
         val app = GildedRose(items)
         app.updateQuality()
@@ -46,7 +46,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun elixirOfTheMongooseNegativeSellIn() {
+    fun elixirOfTheMongooseNegativeSellInBehaviour() {
         val items = listOf(Item("Elixir of the Mongoose", 0, 7))
         val app = GildedRose(items)
         app.updateQuality()
@@ -57,7 +57,7 @@ internal class GildedRoseTest {
 
 
     @Test
-    fun sulfurasAt0() {
+    fun sulfurasAt0Behaviour() {
         val items = listOf(Item("Sulfuras, Hand of Ragnaros", 0, 80))
         val app = GildedRose(items)
         app.updateQuality()
@@ -67,7 +67,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun sulfurasAtMinus1() {
+    fun sulfurasAtMinus1Behaviour() {
         val items = listOf(Item("Sulfuras, Hand of Ragnaros", -1, 80))
         val app = GildedRose(items)
         app.updateQuality()
@@ -77,7 +77,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun  backstagePassesMoreThan10() {
+    fun  backstagePassesMoreThan10Behaviour() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 15, 20))
         val app = GildedRose(items)
         app.updateQuality()
@@ -87,7 +87,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun  backstagePassesReached50at10() {
+    fun  backstagePassesReached50at10Behaviour() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 49))
         val app = GildedRose(items)
         app.updateQuality()
@@ -97,7 +97,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun  backstagePassesReached50at5() {
+    fun  backstagePassesReached50at5Behaviour() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 5, 49))
         val app = GildedRose(items)
         app.updateQuality()
@@ -107,7 +107,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun  backstagePassesAt10() {
+    fun  backstagePassesAt10Behaviour() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 30))
         val app = GildedRose(items)
         app.updateQuality()
@@ -118,7 +118,7 @@ internal class GildedRoseTest {
 
 
     @Test
-    fun  backstagePassesAt5() {
+    fun  backstagePassesAt5Behaviour() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 5, 30))
         val app = GildedRose(items)
         app.updateQuality()
@@ -128,7 +128,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun  backstagePassesAt0() {
+    fun  backstagePassesAt0Behaviour() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 0, 30))
         val app = GildedRose(items)
         app.updateQuality()
@@ -141,7 +141,7 @@ internal class GildedRoseTest {
 
 
     @Test
-    fun  conjuredBasic() {
+    fun  conjuredBasicBehaviour() {
         val items = listOf(Item("Conjured Mana Cake", 3, 6))
         val app = GildedRose(items)
         app.updateQuality()
@@ -151,7 +151,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun  conjuredBasicNegativeSellIn() {
+    fun  conjuredBasicNegativeSellInBehaviour() {
         val items = listOf(Item("Conjured Mana Cake", 0, 6))
         val app = GildedRose(items)
         app.updateQuality()
