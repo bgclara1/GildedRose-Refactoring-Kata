@@ -16,22 +16,20 @@ fun main(args: Array<String>) {
             Item("Conjured Mana Cake", 3, 6)
     )
 
-    for (element in items) {
-        val app = NormalItem(element)
+    val app = GildedRose(items)
 
-        var days = 2
-        if (args.size > 0) {
-            days = Integer.parseInt(args[0]) + 1
-        }
+    var days = 2
+    if (args.size > 0) {
+        days = Integer.parseInt(args[0]) + 1
+    }
 
-        for (i in 0..days - 1) {
-            println("-------- day $i --------")
-            println("name, sellIn, quality")
-            for (item in items) {
-                println(item)
-            }
-            println()
-            app.update()
+    for (i in 0..days - 1) {
+        println("-------- day $i --------")
+        println("name, sellIn, quality")
+        for (item in items) {
+            println(item)
         }
+        println()
+        app.updateQuality()
     }
 }
