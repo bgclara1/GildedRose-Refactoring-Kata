@@ -16,7 +16,10 @@ fun main(args: Array<String>) {
             Item("Conjured Mana Cake", 3, 6)
     )
 
-    val app = GildedRose(items)
+    for (item in items) {
+
+
+    val app = NormalItem(item)
 
     var days = 2
     if (args.size > 0) {
@@ -30,6 +33,7 @@ fun main(args: Array<String>) {
             println(item)
         }
         println()
-        app.updateQuality()
+        app.update()
+    }
     }
 }
