@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal class GildedRoseTest {
 
     @Test
-    fun dexterityVestNormalBehaviour() {
+    fun `Dexterity vest quality decreases by one before expiry`() {
         val item = Item("+5 Dexterity Vest", 10, 20)
         val app = NormalItem(item)
         app.update()
@@ -16,7 +16,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun dexterityVestNegativeSellInBehaviour() {
+    fun `Dexterity vest quality decreases by 2 day after expiry`() {
         val item = (Item("+5 Dexterity Vest", 0, 20))
         val app = NormalItem(item)
         app.update()
@@ -26,7 +26,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun agedBrieNormalBehaviour() {
+    fun `Aged brie quality increases by 1 before expiry`() {
         val item = (Item("Aged Brie", 2, 0))
         val app = NormalItem(item)
         app.update()
@@ -36,7 +36,17 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun elixirOfTheMongooseNormalBehaviour() {
+    fun `Aged brie quality increases by 1 after expiry`() {
+        val item = (Item("Aged Brie", 0, 0))
+        val app = NormalItem(item)
+        app.update()
+        assertEquals("Aged Brie", app.item.name)
+        assertEquals(-1, app.item.sellIn)
+        assertEquals(1, app.item.quality)
+    }
+
+    @Test
+    fun `Elixir of the mongoose decreases in quality by one before expiry`() {
         val item = (Item("Elixir of the Mongoose", 5, 7))
         val app = NormalItem(item)
         app.update()
@@ -46,7 +56,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun elixirOfTheMongooseNegativeSellInBehaviour() {
+    fun `Elixir of the mongoose quality decreases by 2 day after expiry`() {
         val item = (Item("Elixir of the Mongoose", 0, 7))
         val app = NormalItem(item)
         app.update()
@@ -57,7 +67,7 @@ internal class GildedRoseTest {
 
 
     @Test
-    fun sulfurasAt0Behaviour() {
+    fun `Sulfuras hand of ragnaros quality and sale date unchanged at day 0`() {
         val item = (Item("Sulfuras, Hand of Ragnaros", 0, 80))
         val app = NormalItem(item)
         app.update()
@@ -67,7 +77,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun sulfurasAtMinus1Behaviour() {
+    fun `Sulfuras hand of ragnaros quality and sale date unchanged day after 'expiry'`() {
         val item = (Item("Sulfuras, Hand of Ragnaros", -1, 80))
         val app = NormalItem(item)
         app.update()
@@ -77,7 +87,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun backstagePassesMoreThan10Behaviour() {
+    fun `backstage passes increase in quality by 1 with over 10 days to expiry`() {
         val item = (Item("Backstage passes to a TAFKAL80ETC concert", 15, 20))
         val app = NormalItem(item)
         app.update()
@@ -87,7 +97,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun backstagePassesReached50at10Behaviour() {
+    fun `backstage passes increase in quality with 10 days to go, maxing out at 50`() {
         val item = (Item("Backstage passes to a TAFKAL80ETC concert", 10, 49))
         val app = NormalItem(item)
         app.update()
@@ -97,7 +107,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun backstagePassesReached50at5Behaviour() {
+    fun `backstage passes increase in quality by 1 with 5 days to go, maxing out at 50`() {
         val item = (Item("Backstage passes to a TAFKAL80ETC concert", 5, 49))
         val app = NormalItem(item)
         app.update()
@@ -107,7 +117,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun backstagePassesAt10Behaviour() {
+    fun `backstage passes increase in quality by 2 with 10 days to expiry`() {
         val item = (Item("Backstage passes to a TAFKAL80ETC concert", 10, 30))
         val app = NormalItem(item)
         app.update()
@@ -118,7 +128,7 @@ internal class GildedRoseTest {
 
 
     @Test
-    fun backstagePassesAt5Behaviour() {
+    fun `backstage passes increase in quality by 3 with 5 days to expiry`() {
         val item = (Item("Backstage passes to a TAFKAL80ETC concert", 5, 30))
         val app = NormalItem(item)
         app.update()
@@ -128,7 +138,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun backstagePassesAt0Behaviour() {
+    fun `backstage passes drop to zero quality day of expiry`() {
         val item = (Item("Backstage passes to a TAFKAL80ETC concert", 0, 30))
         val app = NormalItem(item)
         app.update()
@@ -137,9 +147,20 @@ internal class GildedRoseTest {
         assertEquals(0, app.item.quality)
     }
 
+    @Test
+    fun `backstage passes drop to zero quality after expiry`() {
+        val item = (Item("Backstage passes to a TAFKAL80ETC concert", -1, 0))
+        val app = NormalItem(item)
+        app.update()
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.item.name)
+        assertEquals(-2, app.item.sellIn)
+        assertEquals(0, app.item.quality)
+    }
+
+
 
     @Test
-    fun conjuredBasicBehaviour() {
+    fun `conjured product decreases in quality by 2 before expiry`() {
         val item = (Item("Conjured Mana Cake", 3, 6))
         val app = NormalItem(item)
         app.update()
@@ -149,7 +170,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun conjuredBasicNegativeSellInBehaviour() {
+    fun `conjured product decreases in quality by 4 after expiry`() {
         val item = (Item("Conjured Mana Cake", 0, 6))
         val app = NormalItem(item)
         app.update()
