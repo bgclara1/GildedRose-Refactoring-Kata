@@ -16,34 +16,27 @@ abstract class UpdatableItem(val item: Item) {
         item.quality = maxOf(0, item.quality - amount)
     }
 
-    fun maintainQuality() {
-        item.quality = item.quality
-        item.sellIn = item.sellIn
-    }
-
-    fun QualityToZero() {
+    fun setQualityToZero() {
         item.quality = 0
     }
 }
 
-class NormalItem(item: Item) : UpdatableItem(item) {
+class GuildedRose(item: Item) : UpdatableItem(item) {
     override fun update() {
-        val staticGoods = arrayOf("Sulfuras, Hand of Ragnaros")
-        if (staticGoods.contains(item.name)) maintainQuality()
-        else decreaseSellIn()
-        //    val appreciatingGoods = arrayOf("Aged Brie", "Backstage passes to a TAFKAL80ETC concert")
-        val depreciatingGoods = arrayOf("+5 Dexterity Vest", "Elixir of the Mongoose")
-        if (item.name == "Aged Brie") increaseQuality(1)
-        if (item.sellIn > 10 && item.name == "Backstage passes to a TAFKAL80ETC concert") increaseQuality(1)
-        if (item.sellIn in 6..9 && item.name == "Backstage passes to a TAFKAL80ETC concert") increaseQuality(2)
-        if (item.sellIn in 1..5 && item.name == "Backstage passes to a TAFKAL80ETC concert") increaseQuality(3)
-        if (item.sellIn < 0 && item.name == "Backstage passes to a TAFKAL80ETC concert") QualityToZero()
-        if (item.sellIn > 0 && depreciatingGoods.contains(item.name)) decreaseQuality(1)
-        if (item.sellIn < 0 && depreciatingGoods.contains(item.name)) decreaseQuality(2)
-        if (item.sellIn > 0 && item.name.startsWith("Conjured")) decreaseQuality(2)
-        if (item.sellIn < 0 && item.name.startsWith("Conjured")) decreaseQuality(4)
+        if (item.name != "Sulfuras, Hand of Ragnaros") decreaseSellIn()
+        when {
+            item.name == "Sulfuras, Hand of Ragnaros" -> {}
+            item.name == "Aged Brie" -> if (item.sellIn < 0) increaseQuality(2) else increaseQuality(2)
+            item.name.startsWith("Backstage passes") -> {
+                    if (item.sellIn < 0) setQualityToZero()
+                    else if (item.sellIn in 1..5)  increaseQuality(3)
+                    else if (item.sellIn in 6..10)  increaseQuality(2)
+                    else increaseQuality(1)
+            }
+            item.name.startsWith("Conjured") -> if (item.sellIn >= 0) decreaseQuality(2) else decreaseQuality(4)
 
-
+            else -> if (item.sellIn < 0) decreaseQuality(2) else decreaseQuality(1)
+        }
 
     }
 }
